@@ -1,0 +1,16 @@
+{
+	"name": "PL_array",
+	"properties": {
+		"variables": {
+			"newarray": {
+				"type": "Array",
+				"defaultValue": [
+					"aa",
+					"cc",
+					"jkd"
+				]
+			}
+		},
+		"annotations": []
+	}
+}
