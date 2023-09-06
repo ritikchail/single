@@ -1,12 +1,30 @@
 {
 	"name": "PL_array",
 	"properties": {
+		"activities": [
+			{
+				"name": "Filter1",
+				"type": "Filter",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('newarray')",
+						"type": "Expression"
+					},
+					"condition": {
+						"value": "@not(equals(item(), 'ccc'))",
+						"type": "Expression"
+					}
+				}
+			}
+		],
 		"variables": {
 			"newarray": {
 				"type": "Array",
 				"defaultValue": [
 					"aa",
-					"cc",
+					"ccc",
 					"jkd"
 				]
 			}
