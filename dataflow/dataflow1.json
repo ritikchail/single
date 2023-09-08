@@ -6,42 +6,33 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "DSinput",
+						"referenceName": "AzureSqlTable1",
 						"type": "DatasetReference"
 					},
-					"name": "moviedatasource"
+					"name": "source1"
 				}
 			],
 			"sinks": [
 				{
 					"dataset": {
-						"referenceName": "DSoutput",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					},
 					"name": "sink1"
 				}
 			],
-			"transformations": [
-				{
-					"name": "filterYear"
-				}
-			],
+			"transformations": [],
 			"scriptLines": [
 				"source(output(",
-				"          Film as string,",
-				"          Genre as string,",
-				"          {Lead Studio} as string,",
-				"          {Audience score %} as string,",
-				"          Profitability as string,",
-				"          {Rotten Tomatoes %} as string,",
-				"          {Worldwide Gross} as string,",
-				"          Year as string",
+				"          PersonID as integer,",
+				"          Name as string,",
+				"          LastModifytime as timestamp",
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> moviedatasource",
-				"moviedatasource filter(toInteger(Year) >= 2000 && toInteger(Year) <= 2008) ~> filterYear",
-				"filterYear sink(allowSchemaDrift: true,",
+				"     isolationLevel: 'READ_UNCOMMITTED',",
+				"     format: 'table') ~> source1",
+				"source1 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     umask: 0022,",
 				"     preCommands: [],",
